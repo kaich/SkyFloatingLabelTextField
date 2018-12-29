@@ -20,11 +20,19 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      A Boolean value that determines if the language displayed is LTR. 
      Default value set automatically from the application language settings.
      */
-    @objc open var isLTRLanguage: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
+    #if TARGET_IS_EXTENSION
+    @objc open var isLTRLanguage: Bool = true {
         didSet {
            updateTextAligment()
         }
     }
+    #else
+    @objc open var isLTRLanguage: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
+        didSet {
+            updateTextAligment()
+        }
+    }
+    #endif
 
     fileprivate func updateTextAligment() {
         if isLTRLanguage {
