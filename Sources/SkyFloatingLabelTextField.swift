@@ -21,13 +21,13 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      Default value set automatically from the application language settings.
      */
     #if TARGET_IS_EXTENSION
-    @objc open var isLTRLanguage: Bool = true {
+    @objc open var isLTRLanguage: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
         didSet {
-           updateTextAligment()
+            updateTextAligment()
         }
     }
     #else
-    @objc open var isLTRLanguage: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
+    @objc open var isLTRLanguage: Bool = true {
         didSet {
             updateTextAligment()
         }
